@@ -8,8 +8,6 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import { useDispatch } from 'react-redux';
-import { logout } from '../../redux/slices/authSlice';
 
 const categories = [
   { id: '1', name: 'Pizza', image: require('../../assets/images/veg.png') },
@@ -45,10 +43,8 @@ const popularItems = [
 ];
 
 const HomeScreen = ({ navigation }: any) => {
-  const dispatch = useDispatch();
-
   const handleLogout = () => {
-    dispatch(logout());
+    navigation.navigate('Login');
   };
 
   return (

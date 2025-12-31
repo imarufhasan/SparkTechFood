@@ -101,6 +101,7 @@ const HomeScreen = ({ navigation }: any) => {
   );
 };
 
+// fafa
 export default HomeScreen;
 
 const styles = StyleSheet.create({

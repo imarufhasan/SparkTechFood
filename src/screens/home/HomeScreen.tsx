@@ -42,6 +42,8 @@ const popularItems = [
   },
 ];
 
+// test
+
 const HomeScreen = ({ navigation }: any) => {
   const handleLogout = () => {
     navigation.navigate('Login');

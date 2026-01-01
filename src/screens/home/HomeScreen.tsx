@@ -1,154 +1,153 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  FlatList,
-  Image,
-  TouchableOpacity,
-  ScrollView,
-} from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, Image } from 'react-native';
+import { bestSellerFoods, recommendedFoods } from '../../constants/foods';
+import FoodCard from '../../components/FoodCard';
+import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import MaterialDesignIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const categories = [
-  { id: '1', name: 'Pizza', image: require('../../assets/images/veg.png') },
-  { id: '2', name: 'Burger', image: require('../../assets/images/veg.png') },
-  { id: '3', name: 'Sushi', image: require('../../assets/images/veg.png') },
-];
+export default function HomeScreen({ navigation }: any) {
+  // get image
+  const fruitImage = require('../../assets/images/food5.png');
+  const carrotImage = require('../../assets/images/food2.png');
+  const squashImage = require('../../assets/images/spices.png');
+  const dairyImage = require('../../assets/images/dairy.png');
+  const BeveragesImage = require('../../assets/images/dairy.png');
 
-const popularItems = [
-  {
-    id: '1',
-    name: 'Pepperoni Pizza',
-    image: require('../../assets/images/veg.png'),
-    price: '$12.99',
-  },
-  {
-    id: '2',
-    name: 'Cheese Burger',
-    image: require('../../assets/images/veg.png'),
-    price: '$10.99',
-  },
-  {
-    id: '3',
-    name: 'Sushi Roll',
-    image: require('../../assets/images/veg.png'),
-    price: '$15.99',
-  },
-  {
-    id: '4',
-    name: 'Veg Pizza',
-    image: require('../../assets/images/veg.png'),
-    price: '$11.99',
-  },
-];
-
-// test
-
-const HomeScreen = ({ navigation }: any) => {
-  const handleLogout = () => {
-    navigation.navigate('Login');
-  };
+  // Dummy data
+  const categories = [
+    { id: 1, title: 'Fruits & Vegetables', image: fruitImage },
+    { id: 2, title: 'Dairy & Bakery', image: dairyImage },
+    { id: 3, title: 'Spices', image: squashImage },
+    { id: 4, title: 'Snacks', image: carrotImage },
+    { id: 5, title: 'Beverages', image: BeveragesImage },
+  ];
 
   return (
-    <ScrollView style={styles.container}>
-      {/* Header */}
-      <View style={styles.header}>
-        <Text style={styles.title}>SparkFood</Text>
-        <TouchableOpacity onPress={handleLogout}>
-          <Text style={styles.logout}>Logout</Text>
-        </TouchableOpacity>
+    <View className="flex-1 bg-gray-50">
+      <ScrollView showsVerticalScrollIndicator={false} className="px-4 pt-6">
+        <View className="mb-5 flex-row gap-4">
+          <FontAwesome6 name="location-dot" size={24} color="green" />
+          <View className="gap-1">
+            <Text className="text-[16px] text-black font-[800]">
+              Hello, Benjamin
+            </Text>
+            <Text className="text-[14px] text-gray-700">Kodoli Island</Text>
+          </View>
+        </View>
+
+        {/* Categories */}
+        <View className="py-2">
+          <View className="flex-row justify-between mb-3">
+            <Text className="text-lg font-semibold">Category</Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('FoodList', {
+                  title: 'Categories',
+                  data: categories,
+                });
+              }}
+              className="flex-row"
+            >
+              <Text className="text-gray-500">View all</Text>
+              <MaterialIcons
+                name="keyboard-arrow-right"
+                size={20}
+                color="gray"
+              />
+            </TouchableOpacity>
+          </View>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            {categories?.map(item => (
+              <View
+                key={item?.id}
+                className="shadow-md mb-2 shadow-black/70 bg-white elevation-4 w-[120px] mr-4 rounded-[10] items-center"
+              >
+                <Image
+                  source={item.image}
+                  className="w-full h-[100px] justify-center items-center rounded-t-xl"
+                />
+                <View className="flex-row flex-1  w-full items-center py-2 px-2 justify-between">
+                  <Text className="text-black font-[500] text-xs flex-1 text-start mt-1">
+                    {item.title}
+                  </Text>
+                  <View className="bg-gray-200 rounded-full p-1">
+                    <MaterialDesignIcons
+                      name="arrow-top-right"
+                      size={15}
+                      color="black"
+                    />
+                  </View>
+                </View>
+              </View>
+            ))}
+          </ScrollView>
+        </View>
+
+        {/* Recommended */}
+        <View className="mt-[10px]">
+          <View className="flex-row justify-between mb-3">
+            <Text className="text-lg font-semibold">Recommended for you</Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('FoodList', {
+                  title: 'Recommended',
+                  data: recommendedFoods,
+                });
+              }}
+              className="flex-row"
+            >
+              <Text className="text-gray-500">View all</Text>
+              <MaterialIcons
+                name="keyboard-arrow-right"
+                size={20}
+                color="gray"
+              />
+            </TouchableOpacity>
+          </View>
+
+          <ScrollView horizontal>
+            {recommendedFoods?.map(item => (
+              <FoodCard key={item.id} item={item} />
+            ))}
+          </ScrollView>
+        </View>
+
+        {/* Best Seller */}
+        <View className="mb-24 mt-6">
+          <View className="flex-row justify-between items-center mb-3">
+            <Text className="text-lg font-semibold">Best seller</Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('FoodList', {
+                  title: 'Best Seller',
+                  data: bestSellerFoods,
+                });
+              }}
+              className="flex-row"
+            >
+              <Text className="text-gray-500">View all</Text>
+              <MaterialIcons
+                name="keyboard-arrow-right"
+                size={20}
+                color="gray"
+              />
+            </TouchableOpacity>
+          </View>
+
+          <ScrollView horizontal>
+            {bestSellerFoods?.map(item => (
+              <FoodCard key={item.id} item={item} />
+            ))}
+          </ScrollView>
+        </View>
+      </ScrollView>
+
+      {/* Bottom Navigation */}
+      <View className="absolute bottom-4 self-center bg-white px-8 py-3 rounded-full flex-row gap-10 shadow-lg">
+        <Text className="text-green-600 text-xl">🏠</Text>
+        <Text className="text-gray-400 text-xl">👤</Text>
       </View>
-
-      {/* Categories */}
-      <Text style={styles.sectionTitle}>Categories</Text>
-      <FlatList
-        horizontal
-        data={categories}
-        keyExtractor={item => item.id}
-        showsHorizontalScrollIndicator={false}
-        renderItem={({ item }) => (
-          <TouchableOpacity style={styles.categoryCard}>
-            <Image source={item.image} style={styles.categoryImage} />
-            <Text style={styles.categoryName}>{item.name}</Text>
-          </TouchableOpacity>
-        )}
-      />
-
-      {/* Popular Items */}
-      <Text style={styles.sectionTitle}>Popular Items</Text>
-      <FlatList
-        data={popularItems}
-        keyExtractor={item => item.id}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            style={styles.popularCard}
-            onPress={() =>
-              navigation.navigate('FoodDetails', {
-                name: item.name,
-                image: item.image,
-                description: 'Delicious & freshly prepared!',
-                price: item.price,
-              })
-            }
-          >
-            <Image source={item.image} style={styles.popularImage} />
-            <Text style={styles.popularName}>{item.name}</Text>
-            <Text style={styles.popularPrice}>{item.price}</Text>
-          </TouchableOpacity>
-        )}
-      />
-    </ScrollView>
+    </View>
   );
-};
-
-export default HomeScreen;
-
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff', padding: 15 },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 20,
-  },
-  title: { fontSize: 28, fontWeight: 'bold', color: '#FF6347' },
-  logout: { color: '#FF6347', fontWeight: 'bold' },
-  sectionTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginVertical: 10,
-    color: '#333',
-  },
-  categoryCard: { alignItems: 'center', marginRight: 15 },
-  categoryImage: { width: 80, height: 80, borderRadius: 40 },
-  categoryName: { marginTop: 5, fontWeight: 'bold', color: '#555' },
-  popularCard: {
-    width: 180,
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    marginRight: 15,
-    padding: 10,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.15,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  popularImage: { width: '100%', height: 120, borderRadius: 12 },
-  popularName: {
-    marginTop: 10,
-    fontWeight: 'bold',
-    fontSize: 16,
-    color: '#333',
-    textAlign: 'center',
-  },
-  popularPrice: {
-    marginTop: 5,
-    color: '#FF6347',
-    fontWeight: 'bold',
-    fontSize: 16,
-  },
-});
+}

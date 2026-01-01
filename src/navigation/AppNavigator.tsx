@@ -13,6 +13,7 @@ import SplashScreen from '../screens/firstTime/SplashScreen';
 import FirstTimeScreenOne from '../screens/firstTime/FirstTimeScreenOne';
 import FirstTimeScreenTwo from '../screens/firstTime/FirstTimeScreenTwo';
 import FirstTimeScreenThree from '../screens/firstTime/FirstTimeScreenThree';
+import FoodListScreen from '../screens/food/FoodListScreen';
 
 export type RootStackParamList = {
   Login: undefined;
@@ -27,6 +28,7 @@ export type RootStackParamList = {
   FirstTimeScreenOne: undefined;
   FirstTimeScreenTwo: undefined;
   FirstTimeScreenThree: undefined;
+  FoodList: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -53,6 +55,7 @@ const AppNavigator = () => (
         component={PassResetSuccessScreen}
       />
       <Stack.Screen name="SplashScreen" component={SplashScreen} />
+      <Stack.Screen name="FoodList" component={FoodListScreen} />
     </Stack.Navigator>
   </NavigationContainer>
 );

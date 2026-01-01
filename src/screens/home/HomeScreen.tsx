@@ -5,6 +5,7 @@ import FoodCard from '../../components/FoodCard';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialDesignIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default function HomeScreen({ navigation }: any) {
   // get image
@@ -21,10 +22,12 @@ export default function HomeScreen({ navigation }: any) {
     { id: 3, title: 'Spices', image: squashImage },
     { id: 4, title: 'Snacks', image: carrotImage },
     { id: 5, title: 'Beverages', image: BeveragesImage },
+    { id: 6, title: 'Fruits & Vegetables', image: fruitImage },
+    { id: 7, title: 'Dairy & Bakery', image: dairyImage },
   ];
 
   return (
-    <View className="flex-1 bg-gray-50">
+    <View className="flex-1 bg-white">
       <ScrollView showsVerticalScrollIndicator={false} className="px-4 pt-6">
         <View className="mb-5 flex-row gap-4">
           <FontAwesome6 name="location-dot" size={24} color="green" />
@@ -39,7 +42,7 @@ export default function HomeScreen({ navigation }: any) {
         {/* Categories */}
         <View className="py-2">
           <View className="flex-row justify-between mb-3">
-            <Text className="text-lg font-semibold">Category</Text>
+            <Text className="text-[18px] font-[600] text-black ">Category</Text>
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate('FoodList', {
@@ -58,7 +61,7 @@ export default function HomeScreen({ navigation }: any) {
             </TouchableOpacity>
           </View>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            {categories?.map(item => (
+            {categories?.slice(0, 4)?.map(item => (
               <View
                 key={item?.id}
                 className="shadow-md mb-2 shadow-black/70 bg-white elevation-4 w-[120px] mr-4 rounded-[10] items-center"
@@ -87,7 +90,9 @@ export default function HomeScreen({ navigation }: any) {
         {/* Recommended */}
         <View className="mt-[10px]">
           <View className="flex-row justify-between mb-3">
-            <Text className="text-lg font-semibold">Recommended for you</Text>
+            <Text className="text-[18px] font-[600] text-black">
+              Recommended for you
+            </Text>
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate('FoodList', {
@@ -107,7 +112,7 @@ export default function HomeScreen({ navigation }: any) {
           </View>
 
           <ScrollView horizontal>
-            {recommendedFoods?.map(item => (
+            {recommendedFoods?.slice(0, 3)?.map(item => (
               <FoodCard key={item.id} item={item} />
             ))}
           </ScrollView>
@@ -116,7 +121,9 @@ export default function HomeScreen({ navigation }: any) {
         {/* Best Seller */}
         <View className="mb-24 mt-6">
           <View className="flex-row justify-between items-center mb-3">
-            <Text className="text-lg font-semibold">Best seller</Text>
+            <Text className="text-[18px] font-[600] text-black">
+              Best seller
+            </Text>
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate('FoodList', {
@@ -136,7 +143,7 @@ export default function HomeScreen({ navigation }: any) {
           </View>
 
           <ScrollView horizontal>
-            {bestSellerFoods?.map(item => (
+            {bestSellerFoods?.slice(0, 3)?.map(item => (
               <FoodCard key={item.id} item={item} />
             ))}
           </ScrollView>
@@ -144,9 +151,13 @@ export default function HomeScreen({ navigation }: any) {
       </ScrollView>
 
       {/* Bottom Navigation */}
-      <View className="absolute bottom-4 self-center bg-white px-8 py-3 rounded-full flex-row gap-10 shadow-lg">
-        <Text className="text-green-600 text-xl">🏠</Text>
-        <Text className="text-gray-400 text-xl">👤</Text>
+      <View className="justify-between items-center absolute bottom-4 self-center border-white border-[1px] bg-[#c6decf] px-3 py-3 rounded-full flex-row gap-8 shadow-lg">
+        <TouchableOpacity className="p-2 border-white bg-green-100 border-[2px] rounded-full">
+          <Icon name="home" size={24} color="green" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('ProfileScreen')}>
+          <Icon name="person" size={24} color="black" />
+        </TouchableOpacity>
       </View>
     </View>
   );

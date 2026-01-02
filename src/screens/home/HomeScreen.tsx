@@ -9,21 +9,16 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default function HomeScreen({ navigation }: any) {
   // get image
-  const fruitImage = require('../../assets/images/food5.png');
-  const carrotImage = require('../../assets/images/food2.png');
   const squashImage = require('../../assets/images/spices.png');
   const dairyImage = require('../../assets/images/dairy.png');
-  const BeveragesImage = require('../../assets/images/dairy.png');
 
   // Dummy data
   const categories = [
-    { id: 1, title: 'Fruits & Vegetables', image: fruitImage },
+    { id: 1, title: 'Fruits & Vegetables', image: dairyImage },
     { id: 2, title: 'Dairy & Bakery', image: dairyImage },
     { id: 3, title: 'Spices', image: squashImage },
-    { id: 4, title: 'Snacks', image: carrotImage },
-    { id: 5, title: 'Beverages', image: BeveragesImage },
-    { id: 6, title: 'Fruits & Vegetables', image: fruitImage },
-    { id: 7, title: 'Dairy & Bakery', image: dairyImage },
+    { id: 4, title: 'Snacks', image: dairyImage },
+    { id: 5, title: 'Beverages', image: dairyImage },
   ];
 
   return (
@@ -45,8 +40,8 @@ export default function HomeScreen({ navigation }: any) {
             <Text className="text-[18px] font-[600] text-black ">Category</Text>
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate('FoodList', {
-                  title: 'Categories',
+                navigation.navigate('CategoryListScreen', {
+                  title: 'All Categories',
                   data: categories,
                 });
               }}
@@ -62,8 +57,14 @@ export default function HomeScreen({ navigation }: any) {
           </View>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             {categories?.slice(0, 4)?.map(item => (
-              <View
+              <TouchableOpacity
                 key={item?.id}
+                onPress={() => {
+                  navigation.navigate('FoodListScreen', {
+                    title: item.title,
+                    data: recommendedFoods,
+                  });
+                }}
                 className="shadow-md mb-2 shadow-black/70 bg-white elevation-4 w-[120px] mr-4 rounded-[10] items-center"
               >
                 <Image
@@ -82,7 +83,7 @@ export default function HomeScreen({ navigation }: any) {
                     />
                   </View>
                 </View>
-              </View>
+              </TouchableOpacity>
             ))}
           </ScrollView>
         </View>
@@ -95,7 +96,7 @@ export default function HomeScreen({ navigation }: any) {
             </Text>
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate('FoodList', {
+                navigation.navigate('FoodListScreen', {
                   title: 'Recommended',
                   data: recommendedFoods,
                 });
@@ -113,7 +114,7 @@ export default function HomeScreen({ navigation }: any) {
 
           <ScrollView horizontal>
             {recommendedFoods?.slice(0, 3)?.map(item => (
-              <FoodCard key={item.id} item={item} />
+              <FoodCard key={item.id} item={item} navigation={navigation} />
             ))}
           </ScrollView>
         </View>
@@ -126,7 +127,7 @@ export default function HomeScreen({ navigation }: any) {
             </Text>
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate('FoodList', {
+                navigation.navigate('FoodListScreen', {
                   title: 'Best Seller',
                   data: bestSellerFoods,
                 });
@@ -144,7 +145,7 @@ export default function HomeScreen({ navigation }: any) {
 
           <ScrollView horizontal>
             {bestSellerFoods?.slice(0, 3)?.map(item => (
-              <FoodCard key={item.id} item={item} />
+              <FoodCard key={item.id} item={item} navigation={navigation} />
             ))}
           </ScrollView>
         </View>

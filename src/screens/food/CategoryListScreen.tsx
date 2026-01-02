@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
-import FoodCardListItem from '../../components/FoodCardListItem';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import CatoryCarListItem from '../../components/CatoryCarListItem';
 
-export default function FoodListScreen({ route, navigation }: any) {
+export default function CategoryListScreen({ route, navigation }: any) {
   const { title, data } = route.params;
 
   const formattedData =
@@ -44,7 +44,7 @@ export default function FoodListScreen({ route, navigation }: any) {
           item.id === 'empty' ? (
             <View className="flex-1" />
           ) : (
-            <FoodCardListItem item={item} navigation={navigation} />
+            <CatoryCarListItem item={item} navigation={navigation} />
           )
         }
         showsVerticalScrollIndicator={false}

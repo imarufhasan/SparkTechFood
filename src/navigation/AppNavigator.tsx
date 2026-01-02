@@ -16,6 +16,8 @@ import FirstTimeScreenThree from '../screens/firstTime/FirstTimeScreenThree';
 import FoodListScreen from '../screens/food/FoodListScreen';
 import ProfileScreen from '../screens/profile/ProfileScreen';
 import ProfileScreenEdit from '../screens/profile/ProfileScreenEdit';
+import CategoryListScreen from '../screens/food/CategoryListScreen';
+import FoodItemDetailsScreen from '../screens/food/FoodItemDetailsScreen';
 
 export type RootStackParamList = {
   Login: undefined;
@@ -30,9 +32,11 @@ export type RootStackParamList = {
   FirstTimeScreenOne: undefined;
   FirstTimeScreenTwo: undefined;
   FirstTimeScreenThree: undefined;
-  FoodList: undefined;
+  FoodListScreen: undefined;
   ProfileScreen: undefined;
   ProfileScreenEdit: undefined;
+  CategoryListScreen: undefined;
+  FoodItemDetailsScreen: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -59,9 +63,14 @@ const AppNavigator = () => (
         component={PassResetSuccessScreen}
       />
       <Stack.Screen name="SplashScreen" component={SplashScreen} />
-      <Stack.Screen name="FoodList" component={FoodListScreen} />
+      <Stack.Screen name="FoodListScreen" component={FoodListScreen} />
       <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
       <Stack.Screen name="ProfileScreenEdit" component={ProfileScreenEdit} />
+      <Stack.Screen name="CategoryListScreen" component={CategoryListScreen} />
+      <Stack.Screen
+        name="FoodItemDetailsScreen"
+        component={FoodItemDetailsScreen}
+      />
     </Stack.Navigator>
   </NavigationContainer>
 );

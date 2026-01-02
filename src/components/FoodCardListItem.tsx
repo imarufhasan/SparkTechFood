@@ -6,18 +6,27 @@ import { FoodItem } from '../constants/foods';
 
 type Props = {
   item: FoodItem;
+  navigation: any;
 };
 
-export default function FoodCardListItem({ item }: Props) {
+export default function FoodCardListItem({ item, navigation }: Props) {
   const [heartIcon, setHeartIcon] = React.useState(false);
 
   return (
-    <View className="flex-1 bg-[#f3f5f7] rounded-2xl pt-2 shadow-sm">
-      {/* Header */}
+    <TouchableOpacity
+      onPress={() => {
+        navigation.navigate('FoodItemDetailsScreen', { navigation, item });
+      }}
+      className="flex-1 bg-[#f3f5f7] rounded-2xl pt-2 shadow-sm"
+    >
       <View className="flex-row items-center px-2">
-        {item.isNew && (
+        {item.isNew ? (
           <Text className="text-[10px] bg-blue-500 text-white px-2 py-1 rounded-r-xl">
             New
+          </Text>
+        ) : (
+          <Text className="text-[10px] bg-gray-400 text-white px-2 py-1 rounded-r-xl">
+            Out of Stock
           </Text>
         )}
         <View className="flex-1" />
@@ -32,8 +41,6 @@ export default function FoodCardListItem({ item }: Props) {
           />
         </TouchableOpacity>
       </View>
-
-      {/* Content */}
       <View className="p-3">
         <Image
           source={item.image}
@@ -65,6 +72,6 @@ export default function FoodCardListItem({ item }: Props) {
           </TouchableOpacity>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }

@@ -6,12 +6,18 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 type Props = {
   item: FoodItem;
+  navigation: any;
 };
 
-export default function FoodCard({ item }: Props) {
+export default function FoodCard({ item, navigation }: Props) {
   const [heartIcon, setHeartIcon] = React.useState(false);
   return (
-    <View className="bg-[#f3f5f7] mr-4 w-[170px] rounded-2xl pt-2 shadow-sm">
+    <TouchableOpacity
+      onPress={() => {
+        navigation.navigate('FoodItemDetailsScreen', { item });
+      }}
+      className="bg-[#f3f5f7] mr-4 w-[170px] rounded-2xl pt-2 shadow-sm"
+    >
       <View className="flex-row items-center">
         {item.isNew && (
           <Text className="text-[10px] bg-blue-400 text-white px-2 py-1 rounded-r-[10px]">
@@ -61,6 +67,6 @@ export default function FoodCard({ item }: Props) {
           </TouchableOpacity>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }

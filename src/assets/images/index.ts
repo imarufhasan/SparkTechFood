@@ -1,6 +1,7 @@
 export const images = {
-  fruit: require('./food1.png'),
-  carrot: require('./food2.png'),
-  squash: require('./food3.png'),
+  fruit: require('./veg.png'),
+  carrot: require('./veg.png'),
+  squash: require('./veg.png'),
   dairy: require('./veg.png'),
+  foodLogo: require('./food_logo.png'),
 };

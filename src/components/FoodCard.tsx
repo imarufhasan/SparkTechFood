@@ -14,6 +14,7 @@ export default function FoodCard({ item, navigation }: Props) {
   return (
     <TouchableOpacity
       onPress={() => {
+        console.log('click food item');
         navigation.navigate('FoodItemDetailsScreen', { item });
       }}
       className="bg-[#f3f5f7] mr-4 w-[170px] rounded-2xl pt-2 shadow-sm"

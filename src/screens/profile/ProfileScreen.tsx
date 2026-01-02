@@ -1,13 +1,21 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import FloatingInput from '../../components/FloatingInput';
 
 export default function ProfileScreen({ navigation }: any) {
+  const userInfo = {
+    name: 'Benjamin Willison',
+    address: 'Kompleks Ruko Jl. Raya Rambutan',
+  };
+  const [name, setName] = React.useState(userInfo.name);
+  const [address, setAddress] = React.useState(userInfo.address);
   return (
     <View className="flex-1 bg-white px-5 pt-6">
       {/* header */}
-      <View className="flex-row items-center justify-between mb-4">
+      <View className="flex-row items-center justify-between mb-6">
         {/* Back button */}
         <TouchableOpacity
           className="w-9 h-9 rounded-[10px] bg-white items-center justify-center shadow-md"
@@ -18,7 +26,7 @@ export default function ProfileScreen({ navigation }: any) {
 
         {/* Title */}
         <Text
-          className="text-lg flex-1 text-center pr-4 font-[600]  text-black"
+          className="text-[18px]  mr-5 flex-1 text-center pr-4 font-[600]  text-black"
           numberOfLines={1}
         >
           My Account
@@ -28,45 +36,41 @@ export default function ProfileScreen({ navigation }: any) {
       {/* Profile */}
       <View className="items-center mb-10">
         <View className="relative">
-          <TouchableOpacity className="border-2 border-gray-200 rounded-full">
+          <View className="border-2 border-gray-200 rounded-full">
             <Image
-              source={require('../../assets/images/profile.png')} // change if needed
-              className="w-24 h-24 rounded-full"
+              source={require('../../assets/images/profile1.jpg')} // change if needed
+              className="w-[120px] h-[120px] rounded-full"
             />
-          </TouchableOpacity>
+          </View>
 
           {/* Online badge */}
-          <View className="absolute bottom-1 right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white" />
-        </View>
-      </View>
-
-      {/* Form */}
-      <View className="gap-4">
-        <View>
-          <Text className="text-xs text-gray-500 mb-1">Name</Text>
-          <View className="border border-gray-300 rounded-full px-4 py-3">
-            <TextInput
-              value="Benjamin Willison"
-              editable={false}
-              className="text-sm text-black"
-            />
-          </View>
-        </View>
-
-        <View>
-          <Text className="text-xs text-gray-500 mb-1">Address</Text>
-          <View className="border border-gray-300 rounded-full px-4 py-3">
-            <TextInput
-              value="Kodoli Island"
-              editable={false}
-              className="text-sm text-black"
-            />
+          <View className="absolute bottom-1 right-1 w-8 h-8 bg-green-500 rounded-full border-[2px] border-white items-center justify-center">
+            <AntDesign name="edit" size={16} color="white" />
           </View>
         </View>
       </View>
+
+      <FloatingInput
+        editable={false}
+        label="Name"
+        value={name}
+        onChangeText={setName}
+      />
+
+      <FloatingInput
+        editable={false}
+        label="Address"
+        value={address}
+        onChangeText={setAddress}
+      />
 
       {/* Edit Button */}
-      <TouchableOpacity className="mt-10 bg-green-600 py-4 rounded-full items-center justify-center shadow-md">
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate('ProfileScreenEdit', { name, address });
+        }}
+        className="mt-10 h-[50px] bg-green-600 py-4 rounded-full items-center justify-center shadow-md"
+      >
         <Text className="text-white font-[600] text-[16px]">Edit</Text>
       </TouchableOpacity>
 

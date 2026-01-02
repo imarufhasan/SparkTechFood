@@ -11,13 +11,15 @@ export default function HomeScreen({ navigation }: any) {
   // get image
   const squashImage = require('../../assets/images/spices.png');
   const dairyImage = require('../../assets/images/dairy.png');
+  const fruitImage = require('../../assets/images/fruit.png');
+  const snacksImage = require('../../assets/images/snacks.jpg');
 
   // Dummy data
   const categories = [
-    { id: 1, title: 'Fruits & Vegetables', image: dairyImage },
+    { id: 1, title: 'Fruits & Vegetables', image: fruitImage },
     { id: 2, title: 'Dairy & Bakery', image: dairyImage },
     { id: 3, title: 'Spices', image: squashImage },
-    { id: 4, title: 'Snacks', image: dairyImage },
+    { id: 4, title: 'Snacks', image: snacksImage },
     { id: 5, title: 'Beverages', image: dairyImage },
   ];
 

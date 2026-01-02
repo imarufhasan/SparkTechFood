@@ -38,11 +38,13 @@ const FoodItemDetailsScreen = ({ navigation, route }: any) => {
         </View>
 
         {/* Food Image */}
-        <Image
-          source={item.image}
-          className="w-full h-56 mt-6"
-          resizeMode="contain"
-        />
+        <View className="items-center justify-center">
+          <Image
+            source={item.image}
+            className="w-[200px] h-[150px] mt-6 rounded-lg"
+            resizeMode="cover"
+          />
+        </View>
       </View>
 
       {/* Price & Quantity */}

@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  TouchableOpacity,
-  ScrollView,
-} from 'react-native';
+import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 interface FoodDetailsProps {
@@ -28,33 +21,48 @@ const FoodDetailsScreen: React.FC<FoodDetailsProps> = ({
   const { name, image, description, price } = route.params;
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView className="flex-1 bg-white">
       {/* Header */}
-      <View style={styles.header}>
+      <View className="flex-row items-center px-4 py-4 gap-5">
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Ionicons name="arrow-back" size={28} color="#333" />
         </TouchableOpacity>
-        <Text style={styles.headerTitle}>Food Details</Text>
+        <Text className="text-[20px] font-bold text-[#333]">Food Details</Text>
       </View>
 
       {/* Food Image */}
-      <Image source={image} style={styles.foodImage} />
+      <Image
+        source={image}
+        className="w-full h-[300px] rounded-b-[25px]"
+        resizeMode="cover"
+      />
 
       {/* Food Info */}
-      <View style={styles.infoContainer}>
-        <View style={styles.titleRow}>
-          <Text style={styles.foodName}>{name}</Text>
+      <View className="p-5">
+        <View className="flex-row justify-between items-center">
+          <Text
+            className="text-[24px] font-bold text-[#333] flex-1"
+            numberOfLines={2}
+          >
+            {name}
+          </Text>
+
           <TouchableOpacity>
             <Ionicons name="heart" size={28} color="#FF6347" />
           </TouchableOpacity>
         </View>
 
-        <Text style={styles.description}>{description}</Text>
-        <Text style={styles.price}>{price}</Text>
+        <Text className="text-[16px] text-[#666] mt-2.5 leading-[22px]">
+          {description}
+        </Text>
+
+        <Text className="text-[22px] font-bold text-[#FF6347] mt-4">
+          {price}
+        </Text>
 
         {/* Add to Cart Button */}
-        <TouchableOpacity style={styles.addButton}>
-          <Text style={styles.addButtonText}>Add to Cart</Text>
+        <TouchableOpacity className="bg-[#FF6347] py-4 rounded-xl mt-6 items-center">
+          <Text className="text-white text-[18px] font-bold">Add to Cart</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
@@ -62,38 +70,3 @@ const FoodDetailsScreen: React.FC<FoodDetailsProps> = ({
 };
 
 export default FoodDetailsScreen;
-
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff' },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 15,
-    paddingVertical: 15,
-    gap: 20,
-  },
-  headerTitle: { fontSize: 20, fontWeight: 'bold', color: '#333' },
-  foodImage: {
-    width: '100%',
-    height: 300,
-    borderBottomLeftRadius: 25,
-    borderBottomRightRadius: 25,
-  },
-  infoContainer: { padding: 20 },
-  titleRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  foodName: { fontSize: 24, fontWeight: 'bold', color: '#333', flex: 1 },
-  description: { fontSize: 16, color: '#666', marginTop: 10, lineHeight: 22 },
-  price: { fontSize: 22, fontWeight: 'bold', color: '#FF6347', marginTop: 15 },
-  addButton: {
-    backgroundColor: '#FF6347',
-    paddingVertical: 15,
-    borderRadius: 12,
-    marginTop: 25,
-    alignItems: 'center',
-  },
-  addButtonText: { color: '#fff', fontSize: 18, fontWeight: 'bold' },
-});

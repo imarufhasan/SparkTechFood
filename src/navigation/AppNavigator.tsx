@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from '../screens/auth/LoginScreen';
 import SignupScreen from '../screens/auth/SignupScreen';
 import HomeScreen from '../screens/home/HomeScreen';
-import FoodDetailsScreen from '../screens/home/FoodDetailsScreen';
+// import FoodDetailsScreen from '../screens/home/FoodDetailsScreen';
 import ForgotPasswordScreen from '../screens/auth/ForgotPasswordScreen';
 import VerifyCode from '../screens/auth/VerifyCode';
 import ChangePassord from '../screens/auth/ChangePassord';
@@ -53,7 +53,7 @@ const AppNavigator = () => (
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Signup" component={SignupScreen} />
       <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="FoodDetails" component={FoodDetailsScreen} />
+      {/* <Stack.Screen name="FoodDetails" component={FoodDetailsScreen} /> */}
       <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
 
       <Stack.Screen name="VerifyCode" component={VerifyCode} />
